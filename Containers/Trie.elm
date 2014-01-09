@@ -1,4 +1,4 @@
-module Trie where
+module Containers.Trie where
 
 import Dict as D
 import String as S
