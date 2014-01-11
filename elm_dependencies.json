@@ -1,0 +1,13 @@
+{ "version": "0.1"
+, "summary": "Efficient Purely Functional Data Structures"
+, "description": "Implementations of various Data Structures"
+, "license": "BSD3"
+, "repository": "http://github.com/maxsnew/Containers.git"
+, "exposed-modules":
+      [ "Containers.Queue"
+        , "Containers.Dequeue"
+        , "Containers.Trie"
+      ]
+, "elm-version": "0.10.1"
+, "dependencies": {}
+}
