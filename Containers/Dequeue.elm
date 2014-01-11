@@ -6,6 +6,7 @@ module Containers.Dequeue (empty, isEmpty, fromList, toList,
 
 import List
 import Native.Error
+import Containers.Queue as Q
 
 -- | Dequeue invariant: each list is non-empty when the other list has >= 2 elements
 data Dequeue a = DQ [a] [a]
@@ -75,8 +76,12 @@ fixUp f r = case (f, r) of
 
 -- split a list in half and reverse the second half
 revSplit : [a] -> ([a], [a])
-revSplit xs = let len = List.length xs
-                  half = len `div` 2
-                  f = List.take half xs
-                  r = List.drop half xs
-              in (f, List.reverse r)
+revSplit xs = 
+  let len = List.length xs
+      half = len `div` 2
+      loop n acc xs = case n of
+        0 -> (List.reverse acc, List.reverse xs)
+        _ -> case xs of
+          []       -> (List.reverse acc, List.reverse xs)
+          (x::xs') -> loop (n - 1) (x :: acc) xs'
+  in loop half [] xs
